@@ -107,3 +107,12 @@ describe "time source" do
     CronParser.new("* * * * *",ExtendedTime).next
   end
 end
+
+describe 'with utc' do
+  
+  it 'uses utc instead of local' do
+    parser = CronParser.new('* * * * *', Time, true)
+    parser.next(Time.now).zone.should eq 'UTC'
+  end
+
+end
